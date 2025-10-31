@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>런닝 모임 | 모두에게 열린 가벼운 러닝 모임</title>
+  <meta name="description" content="모든 연령대가 함께 달리는 캐주얼 런닝 모임. 초보부터 경험자까지 환영합니다." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #0d0f14;
+      --muted: #656d76;
+      --brand: #2b74ff;
+      --line: #e7eaee;
+      --card: #f7f9fc;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#0b0d11; --fg:#e8ecf2; --muted:#97a0ab; --brand:#6ea0ff; --line:#1a2029; --card:#0f131a; }
+    }
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--fg); font-family:"Pretendard", system-ui, -apple-system, Segoe UI, Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; }
+    a { color: var(--fg); text-decoration: none; }
+    .container { width:min(1100px, 92%); margin-inline:auto; }
+    header { position:sticky; top:0; backdrop-filter:saturate(180%) blur(12px); background:color-mix(in oklab, var(--bg) 85%, transparent); border-bottom:1px solid var(--line); z-index:50; }
+    .nav { display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:0.2px; }
+    .logo { width:28px; height:28px; border-radius:10px; background: conic-gradient(from 180deg at 50% 50%, var(--brand), #00c2a8, #ffb703, var(--brand)); }
+    .nav a.btn { padding:10px 14px; border:1px solid var(--line); border-radius:12px; font-weight:600; }
+    .hero { padding:72px 0 40px; display:grid; grid-template-columns:1.2fr 0.8fr; gap:28px; align-items:center; }
+    @media (max-width: 880px){ .hero{ grid-template-columns:1fr; } }
+    h1 { font-size: clamp(28px, 4.5vw, 44px); line-height:1.1; margin:0 0 14px; }
+    .lead { color:var(--muted); font-size: clamp(14px, 2.2vw, 18px); margin:0 0 22px; }
+    .cta { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-primary { background:var(--brand); color:white; border:1px solid color-mix(in oklab, var(--brand), black 10%); padding:12px 16px; border-radius:12px; font-weight:700; }
+    .btn-ghost { border:1px solid var(--line); padding:12px 16px; border-radius:12px; font-weight:700; }
+    .demo-card { background: var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; }
+    .tag { display:inline-block; font-size:12px; background: #eef3ff; color:#2b5bf5; padding:6px 10px; border-radius:999px; border:1px solid #d9e6ff; }
+    @media (prefers-color-scheme: dark){ .tag{ background:#10192e; color:#a7c3ff; border-color:#1c2b4d; } }
+    section { padding: 40px 0; }
+    .section-title { font-size:22px; margin:0 0 14px; }
+    .grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; }
+    @media (max-width: 980px){ .grid-3{ grid-template-columns:1fr 1fr; } }
+    @media (max-width: 640px){ .grid-3{ grid-template-columns:1fr; } }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; display:flex; gap:12px; }
+    .card h3 { margin:4px 0 6px; font-size:16px; }
+    .muted { color:var(--muted); font-size:14px; }
+    .inline-svg { width:100%; aspect-ratio: 16 / 10; background:linear-gradient(180deg, #f5f8ff, #f1f5fb); border:1px dashed #cfd8e3; border-radius:12px; display:grid; place-items:center; color:#6b7280; font-weight:600; }
+    @media (prefers-color-scheme: dark){ .inline-svg{ background:linear-gradient(180deg, #0f131a, #0b0f15); border-color:#262e3a; color:#93a0b2; } }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    @media (max-width: 880px){ .two-col{ grid-template-columns:1fr; } }
+    form { display:grid; gap:12px; }
+    input, select { background:transparent; border:1px solid var(--line); border-radius:12px; padding:12px 14px; color:var(--fg); }
+    input::placeholder { color:var(--muted); }
+    .footer { border-top:1px solid var(--line); padding:22px 0; font-size:14px; color:var(--muted); }
+    .pill { display:inline-flex; align-items:center; gap:8px; font-size:13px; border:1px solid var(--line); padding:8px 12px; border-radius:999px; }
+    .sr-only { position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="주요">
+      <a class="brand" href="#home" aria-label="홈으로">
+        <span class="logo" aria-hidden="true"></span>
+        <span>런닝 모임</span>
+      </a>
+      <nav class="links" aria-label="섹션">
+        <a class="btn" href="#about">소개</a>
+        <a class="btn" href="#schedule">일정</a>
+        <a class="btn" href="#join">참여</a>
+        <a class="btn" href="#gallery">갤러리</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="container">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <span class="tag">테마: 캐주얼 · 가볍게</span>
+        <h1 id="hero-title">모두에게 열린 <span style="color:var(--brand)">런닝 커뮤니티</span></h1>
+        <p class="lead">초보도, 기록러도 함께 가볍게 달려요. 미니멀하고 심플한 운영으로, 전문성과 신뢰성을 지향합니다.</p>
+        <div class="cta">
+          <a href="#join" class="btn-primary">첫 참가 신청</a>
+          <a href="#schedule" class="btn-ghost">다가오는 일정 보기</a>
+        </div>
+        <p class="muted" style="margin-top:14px">타겟: 런닝에 관심있는 모든 연령대 · 이미지: 아래 데모 활용</p>
+      </div>
+      <div class="demo-card" aria-hidden="true">
+        <div class="inline-svg">DEMO IMAGE — 러닝 실루엣</div>
+        <div class="two-col" style="margin-top:12px">
+          <div class="inline-svg" style="aspect-ratio: 1.6/1">DEMO — 모임 스냅</div>
+          <div class="inline-svg" style="aspect-ratio: 1.6/1">DEMO — 루트 미니맵</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <h2 class="section-title" id="about-title">모임 소개</h2>
+      <div class="two-col">
+        <div class="card">
+          <div style="width:36px" aria-hidden="true">🏃</div>
+          <div>
+            <h3>가볍지만 체계적으로</h3>
+            <p class="muted">웜업–런–쿨다운 3단계로 진행하며, 페이스·거리·안전 브리핑을 사전 고지합니다.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div style="width:36px" aria-hidden="true">🤝</div>
+          <div>
+            <h3>모든 연령 환영</h3>
+            <p class="muted">초보 그룹부터 인터벌 그룹까지 페이스를 나누어 누구나 편하게 합류할 수 있어요.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="schedule" aria-labelledby="schedule-title">
+      <h2 class="section-title" id="schedule-title">다가오는 일정</h2>
+      <div class="grid-3" role="list">
+        <article class="card" role="listitem">
+          <div>
+            <h3>토요 모닝런</h3>
+            <p class="muted">매주 토요일 · 7:30 AM · 한강 시민공원</p>
+            <p>5k · 7k · 10k 그룹 나눔</p>
+          </div>
+        </article>
+        <article class="card" role="listitem">
+          <div>
+            <h3>수요 나이트런</h3>
+            <p class="muted">매주 수요일 · 8:00 PM · 시청 광장</p>
+            <p>가벼운 회복주 · 대화 페이스</p>
+          </div>
+        </article>
+        <article class="card" role="listitem">
+          <div>
+            <h3>초보자 클래스</h3>
+            <p class="muted">매월 첫째 주 일요일 · 9:00 AM · 올림픽공원</p>
+            <p>호흡/자세/부상 예방 기본</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="two-col" aria-labelledby="route-title">
+      <div>
+        <h2 class="section-title" id="route-title">러닝 루트(데모)</h2>
+        <div class="inline-svg" aria-hidden="true">DEMO MAP — 경로 미리보기</div>
+        <p class="muted" style="margin-top:8px">실제 지도 연동 전까지는 데모 맵을 노출합니다.</p>
+      </div>
+      <div id="join">
+        <h2 class="section-title">참가 신청</h2>
+        <form onsubmit="event.preventDefault(); alert('신청이 접수되었습니다!'); this.reset();" aria-describedby="join-note">
+          <label class="sr-only" for="name">이름</label>
+          <input id="name" name="name" placeholder="이름" required />
+          <label class="sr-only" for="contact">연락처(이메일)</label>
+          <input id="contact" name="contact" type="email" placeholder="이메일" required />
+          <label class="sr-only" for="pace">관심 페이스</label>
+          <select id="pace" name="pace" aria-label="관심 페이스">
+            <option value="beginner">초보 (7:30+/km)</option>
+            <option value="easy">이지 (6:30–7:30)</option>
+            <option value="steady">스테디 (5:30–6:30)</option>
+            <option value="tempo">템포 (4:30–5:30)</option>
+          </select>
+          <button class="btn-primary" type="submit">신청하기</button>
+          <p id="join-note" class="muted">개인정보는 신청 확인 및 행사 안내 용도로만 사용됩니다.</p>
+        </form>
+      </div>
+    </section>
+
+    <section id="gallery" aria-labelledby="gallery-title">
+      <h2 class="section-title" id="gallery-title">갤러리 (데모)</h2>
+      <div class="grid-3">
+        <div class="inline-svg" aria-label="데모 이미지 1">DEMO IMAGE</div>
+        <div class="inline-svg" aria-label="데모 이미지 2">DEMO IMAGE</div>
+        <div class="inline-svg" aria-label="데모 이미지 3">DEMO IMAGE</div>
+      </div>
+    </section>
+
+    <section aria-labelledby="faq-title">
+      <h2 class="section-title" id="faq-title">자주 묻는 질문</h2>
+      <div class="two-col">
+        <div class="card">
+          <div>
+            <h3>첫 참가, 무엇을 준비하나요?</h3>
+            <p class="muted">러닝화, 물, 얇은 바람막이 정도면 충분해요. 안전을 위해 밝은 색 상의를 권장합니다.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div>
+            <h3>비 오면 어떻게 하나요?</h3>
+            <p class="muted">가벼운 비는 진행, 악천후 시 전날 10시까지 공지합니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container two-col">
+      <p>© <span id="y"></span> 런닝 모임 · 미니멀 & 심플 · 전문성과 신뢰성 지향</p>
+      <div style="text-align:right">
+        <span class="pill" aria-label="SNS 안내">📧 문의: hello@running.example</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
